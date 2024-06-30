@@ -19,5 +19,25 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "@ai-sdk/anthropic": "^0.0.27",
+    "@codesandbox/sandpack-react": "^2.14.4",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@langchain/anthropic": "^0.2.3",
+    "@langchain/core": "^0.2.11",
+    "@lukebechtel/lab-ts-utils": "^6.4.0",
+    "@mui/icons-material": "^5.15.21",
+    "@mui/material": "^5.15.21",
+    "@types/cytoscape": "^3.21.4",
+    "@types/cytoscape-dagre": "^2.3.3",
+    "@types/lodash": "^4.17.6",
+    "ai": "^3.2.15",
+    "axios": "^1.7.2",
+    "cytoscape": "^3.30.0",
+    "cytoscape-dagre": "^2.5.0",
+    "lodash": "^4.17.21",
+    "mermaid": "^10.9.1"
+  }
 }
