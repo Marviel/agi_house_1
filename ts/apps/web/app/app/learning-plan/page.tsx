@@ -27,6 +27,7 @@ import {
 
 export default function AICodeSandboxPage() {
     const [subject, setSubject] = useState('');
+    const [notes, setNotes] = useState('')
     const [showEditor, setShowEditor] = useState(false);
 
     // TODO: store past iterations
@@ -67,7 +68,7 @@ export default function AICodeSandboxPage() {
         setGeneratingCodeState('generating');
 
         try {
-            const result = await axios.post('/api/ai/chat', { subject: subject, existingProgram: fullFileContents });
+            const result = await axios.post('/api/ai/chat', { subject: subject, existingProgram: fullFileContents, notes: notes });
             setFullFileContents(result.data.response.reactFile);
         } catch (error) {
             console.error('Error generating diagram:', error);
@@ -76,7 +77,7 @@ export default function AICodeSandboxPage() {
         finally {
             setGeneratingCodeState('waiting');
         }
-    }, [subject, generatingCodeState, fullFileContents]);
+    }, [subject, generatingCodeState, fullFileContents, notes]);
 
     return (
         <Paper>
@@ -92,6 +93,19 @@ export default function AICodeSandboxPage() {
                     value={subject} onChange={(e) => {
                         setSubject(e.target.value);
                     }}
+                />
+
+                <TextField
+                    autoComplete="off"
+                    aria-autocomplete="none"
+                    label={'Extra Notes (Optional)'}
+                    fullWidth={true}
+                    value={notes}
+                    onChange={(e) => {
+                        setNotes(e.target.value);
+                    }}
+                    multiline
+                    maxRows={6}
                 />
 
                 <Button
@@ -134,6 +148,16 @@ export default function AICodeSandboxPage() {
                                 code: fullFileContents,
                             },
                         }}
+                        customSetup={{
+                            dependencies: {
+                                "three": "latest",
+                                "@mui/material": "latest",
+                                "@mui/icons-material": "latest",
+                                "@emotion/react": "latest",
+                                "@emotion/styled": "latest",
+                            }
+                        }}
+
                         options={{
 
                         }}
